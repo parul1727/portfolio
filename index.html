@@ -5,183 +5,196 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parul Agrawal — Senior Technical Lead</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0F1720;
-    --panel:#16212C;
-    --panel-2:#1C2A38;
-    --line:#2A3B4A;
-    --text:#E7ECF1;
-    --muted:#8CA0B3;
-    --accent:#5EEAD4;
-    --accent-dim:#2E5A54;
-    --amber:#F2B84B;
-    --radius:2px;
+    --bg:#F6F7FB;
+    --surface:#FFFFFF;
+    --border:#E7E9F2;
+    --text:#191B29;
+    --muted:#666B80;
+    --indigo:#5B5FEF;
+    --cyan:#06B6D4;
+    --amber:#F5A623;
+    --grad: linear-gradient(120deg, #5B5FEF 0%, #06B6D4 100%);
+    --radius:14px;
+    --shadow: 0 1px 2px rgba(20,20,43,0.04), 0 8px 24px rgba(20,20,43,0.06);
+    --shadow-lg: 0 4px 12px rgba(20,20,43,0.06), 0 24px 48px rgba(20,20,43,0.10);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:var(--ink);
+    background:var(--bg);
     color:var(--text);
     font-family:'Inter', sans-serif;
-    line-height:1.6;
+    line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
   .mono{font-family:'JetBrains Mono', monospace;}
-  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  h1,h2,h3{font-family:'Plus Jakarta Sans', sans-serif; font-weight:700; letter-spacing:-0.02em; color:var(--text);}
   a{color:inherit; text-decoration:none;}
-  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+  .wrap{max-width:960px; margin:0 auto; padding:0 28px;}
+  ::selection{background:#DCDEFF;}
 
-  /* background schematic grid */
-  .grid-bg{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    background-image:
-      linear-gradient(rgba(94,234,212,0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(94,234,212,0.035) 1px, transparent 1px);
-    background-size:42px 42px;
-    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 80%);
-  }
+  .blob{position:fixed; border-radius:50%; filter:blur(80px); z-index:0; opacity:0.35; pointer-events:none;}
+  .blob-1{width:420px; height:420px; background:#8B8FF7; top:-140px; right:-100px;}
+  .blob-2{width:360px; height:360px; background:#67E8F9; bottom:-120px; left:-120px;}
 
   header{
-    position:sticky; top:0; z-index:10;
+    position:sticky; top:0; z-index:20;
+    background:rgba(246,247,251,0.85);
     backdrop-filter:blur(10px);
-    background:rgba(15,23,32,0.85);
-    border-bottom:1px solid var(--line);
+    border-bottom:1px solid var(--border);
   }
   nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
-  .logo{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:0.02em;}
-  .logo span{color:var(--accent);}
-  nav ul{display:flex; gap:28px; list-style:none;}
-  nav ul li a{font-size:0.85rem; color:var(--muted); transition:color .2s;}
-  nav ul li a:hover{color:var(--accent);}
+  .logo{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.05rem;}
+  .logo span{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  nav ul{display:flex; gap:26px; list-style:none;}
+  nav ul li a{font-size:0.88rem; color:var(--muted); font-weight:500; transition:color .2s;}
+  nav ul li a:hover{color:var(--indigo);}
 
-  /* HERO */
-  .hero{
-    position:relative; z-index:1;
-    padding:110px 0 90px;
-    border-bottom:1px solid var(--line);
-  }
+  .hero{position:relative; z-index:1; padding:100px 0 70px;}
   .eyebrow{
-    font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--accent);
-    text-transform:uppercase; letter-spacing:0.12em; margin-bottom:18px;
-    display:flex; align-items:center; gap:10px;
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.82rem; font-weight:600; color:var(--indigo);
+    background:#EEEEFE; border:1px solid #DCDEFF;
+    padding:6px 14px; border-radius:999px; margin-bottom:22px;
   }
-  .eyebrow::before{content:''; width:24px; height:1px; background:var(--accent);}
-  .hero h1{font-size:clamp(2.2rem, 5vw, 3.4rem); line-height:1.08; max-width:14ch;}
-  .hero .role{
-    margin-top:18px; font-size:1.15rem; color:var(--muted); max-width:52ch;
-  }
-  .hero .role strong{color:var(--text); font-weight:500;}
-  .hero-actions{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--cyan);}
+  .hero h1{font-size:clamp(2.1rem, 4.6vw, 3.2rem); line-height:1.12; max-width:16ch;}
+  .hero h1 .hl{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .hero .role{margin-top:18px; font-size:1.1rem; color:var(--muted); max-width:54ch;}
+  .hero .role strong{color:var(--text); font-weight:600;}
+  .hero-actions{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
   .btn{
-    font-family:'JetBrains Mono',monospace; font-size:0.82rem;
-    padding:12px 20px; border-radius:var(--radius);
-    border:1px solid var(--line); transition:all .2s;
+    font-family:'Inter',sans-serif; font-size:0.88rem; font-weight:600;
+    padding:12px 22px; border-radius:10px; border:1px solid var(--border);
+    transition:transform .15s, box-shadow .15s, background .15s;
   }
-  .btn-primary{background:var(--accent); color:#0B1319; border-color:var(--accent); font-weight:500;}
-  .btn-primary:hover{background:#7CF0DE;}
-  .btn-ghost{color:var(--text);}
-  .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+  .btn-primary{background:var(--grad); color:#fff; border:none; box-shadow:var(--shadow);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:var(--shadow-lg);}
+  .btn-ghost{background:var(--surface); color:var(--text);}
+  .btn-ghost:hover{transform:translateY(-2px); box-shadow:var(--shadow);}
 
-  /* schematic connector graphic */
-  .schematic{
-    margin-top:64px; display:flex; align-items:center; justify-content:space-between;
-    max-width:640px; position:relative;
+  .mock{
+    margin-top:60px; background:var(--surface); border:1px solid var(--border);
+    border-radius:16px; box-shadow:var(--shadow-lg); overflow:hidden; max-width:640px;
   }
-  .node{
-    display:flex; flex-direction:column; align-items:center; gap:10px; position:relative; z-index:2;
+  .mock-bar{
+    display:flex; align-items:center; gap:8px; padding:12px 16px;
+    background:#FAFAFD; border-bottom:1px solid var(--border);
   }
-  .node .dot{
-    width:14px; height:14px; border-radius:50%; background:var(--panel-2);
-    border:2px solid var(--accent); box-shadow:0 0 0 4px rgba(94,234,212,0.08);
+  .mock-bar .mdot{width:9px; height:9px; border-radius:50%;}
+  .mdot.r{background:#FF6159;} .mdot.y{background:#FFBD2E;} .mdot.g{background:#28C840;}
+  .mock-bar .url{
+    margin-left:12px; font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted);
+    background:#fff; border:1px solid var(--border); padding:4px 10px; border-radius:6px;
   }
-  .node .label{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted);}
-  .connector{
-    flex:1; height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 10px);
-    margin:0 -4px 22px;
+  .mock-body{padding:22px; display:flex; flex-direction:column; gap:14px;}
+  .mock-row{display:flex; gap:12px; align-items:center;}
+  .mock-input{
+    flex:1; height:38px; border-radius:8px; border:1px solid var(--border);
+    background:#FAFAFD; display:flex; align-items:center; padding:0 12px;
+    font-size:0.8rem; color:var(--muted);
   }
+  .mock-btn{
+    height:38px; padding:0 18px; border-radius:8px; background:var(--grad); color:#fff;
+    font-size:0.8rem; font-weight:600; display:flex; align-items:center; justify-content:center;
+  }
+  .mock-cards{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
+  .mock-card{border:1px solid var(--border); border-radius:8px; padding:12px; background:#FCFCFE;}
+  .mock-card .bar{height:6px; border-radius:4px; background:var(--grad); width:60%; margin-bottom:8px;}
+  .mock-card .l1{height:6px; border-radius:4px; background:#E7E9F2; width:90%; margin-bottom:6px;}
+  .mock-card .l2{height:6px; border-radius:4px; background:#E7E9F2; width:65%;}
+  .mock-toggle{display:flex; align-items:center; gap:8px; font-size:0.78rem; color:var(--muted);}
+  .switch{width:34px; height:19px; border-radius:999px; background:var(--grad); position:relative;}
+  .switch::after{content:''; position:absolute; width:14px; height:14px; border-radius:50%; background:#fff; top:2.5px; right:2.5px;}
 
-  section{position:relative; z-index:1; padding:80px 0; border-bottom:1px solid var(--line);}
-  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
-  .section-head .num{font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:0.85rem;}
-  .section-head h2{font-size:1.6rem;}
+  section{position:relative; z-index:1; padding:76px 0; border-top:1px solid var(--border);}
+  .section-head{display:flex; align-items:center; gap:12px; margin-bottom:34px;}
+  .section-head .tag{
+    font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:#fff;
+    background:var(--grad); padding:4px 10px; border-radius:6px; font-weight:500;
+  }
+  .section-head h2{font-size:1.55rem;}
 
-  /* about */
-  .about p{max-width:66ch; color:var(--muted); font-size:1rem;}
+  .about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:36px; align-items:start;}
+  .about p{color:var(--muted); font-size:1rem;}
   .about p + p{margin-top:16px;}
-
-  /* skills */
-  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:28px;}
-  .skill-group h3{
-    font-family:'JetBrains Mono',monospace; font-size:0.78rem; text-transform:uppercase;
-    letter-spacing:0.08em; color:var(--amber); margin-bottom:14px; font-weight:500;
+  .stat-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:18px;
   }
+  .stat{display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px solid var(--border); padding-bottom:14px;}
+  .stat:last-child{border-bottom:none; padding-bottom:0;}
+  .stat .num{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.5rem; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .stat .lbl{font-size:0.82rem; color:var(--muted); text-align:right;}
+
+  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:20px;}
+  .skill-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);}
+  .skill-card h3{font-size:0.85rem; text-transform:uppercase; letter-spacing:0.04em; color:var(--indigo); margin-bottom:14px;}
   .chips{display:flex; flex-wrap:wrap; gap:8px;}
-  .chip{
-    font-family:'JetBrains Mono',monospace; font-size:0.78rem;
-    padding:6px 12px; background:var(--panel); border:1px solid var(--line);
-    border-radius:var(--radius); color:var(--text);
-  }
+  .chip{font-size:0.8rem; font-weight:500; padding:6px 12px; background:#F3F3FE; border:1px solid #E2E3FB; border-radius:999px; color:#3F3FB8;}
 
-  /* experience timeline */
-  .timeline{border-left:1px solid var(--line); padding-left:32px; display:flex; flex-direction:column; gap:44px;}
-  .tl-item{position:relative;}
-  .tl-item::before{
-    content:''; position:absolute; left:-37.5px; top:6px;
-    width:9px; height:9px; border-radius:50%; background:var(--ink);
-    border:2px solid var(--accent);
+  .timeline{display:flex; flex-direction:column; gap:20px;}
+  .tl-item{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:24px 26px; box-shadow:var(--shadow); position:relative;}
+  .tl-item .when{
+    font-family:'JetBrains Mono',monospace; font-size:0.74rem; color:#fff;
+    background:var(--grad); display:inline-block; padding:3px 10px; border-radius:6px; margin-bottom:10px;
   }
-  .tl-item .when{font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--muted); margin-bottom:6px;}
-  .tl-item h3{font-size:1.1rem; margin-bottom:4px;}
-  .tl-item .co{color:var(--accent); font-weight:500;}
-  .tl-item ul{margin-top:10px; padding-left:18px; color:var(--muted); font-size:0.94rem;}
+  .tl-item h3{font-size:1.08rem; margin-bottom:2px;}
+  .tl-item .co{color:var(--indigo);}
+  .tl-item ul{margin-top:12px; padding-left:18px; color:var(--muted); font-size:0.93rem;}
   .tl-item li{margin-bottom:6px;}
 
-  /* projects placeholder */
   .note{
-    background:var(--panel); border:1px dashed var(--line); border-radius:var(--radius);
-    padding:16px 20px; margin-bottom:28px; color:var(--muted); font-size:0.9rem;
+    background:#FFF8EC; border:1px solid #F5DFB0; border-radius:var(--radius);
+    padding:16px 20px; margin-bottom:26px; color:#7A5A16; font-size:0.9rem;
   }
-  .note strong{color:var(--amber);}
+  .note strong{color:#B8791A;}
   .proj-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:20px;}
   .proj-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
-    padding:22px; display:flex; flex-direction:column; gap:10px;
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:22px; display:flex; flex-direction:column; gap:10px; box-shadow:var(--shadow);
+    transition:transform .15s, box-shadow .15s;
   }
-  .proj-card .ph-title{font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em;}
-  .proj-card h3{font-size:1.05rem; color:var(--text);}
-  .proj-card p{color:var(--muted); font-size:0.9rem;}
-  .proj-card .tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:4px;}
-  .proj-card .tag{font-family:'JetBrains Mono',monospace; font-size:0.68rem; padding:3px 8px; border:1px solid var(--line); border-radius:var(--radius); color:var(--accent);}
+  .proj-card:hover{transform:translateY(-3px); box-shadow:var(--shadow-lg);}
+  .proj-card .ph-icon{
+    width:34px; height:34px; border-radius:9px; background:var(--grad);
+    display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.9rem; font-weight:700;
+  }
+  .proj-card h3{font-size:1.02rem; margin-top:4px;}
+  .proj-card p{color:var(--muted); font-size:0.88rem;}
+  .proj-card .tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:2px;}
+  .proj-card .tag{font-size:0.7rem; font-weight:600; padding:3px 9px; background:#F3F3FE; border-radius:999px; color:#3F3FB8;}
 
-  /* contact */
-  .contact{border-bottom:none;}
   .contact-grid{display:flex; flex-wrap:wrap; gap:16px; margin-top:8px;}
   .contact-card{
-    flex:1; min-width:200px; background:var(--panel); border:1px solid var(--line);
-    border-radius:var(--radius); padding:20px; transition:border-color .2s;
+    flex:1; min-width:200px; background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); padding:20px; box-shadow:var(--shadow);
+    transition:transform .15s, box-shadow .15s;
   }
-  .contact-card:hover{border-color:var(--accent);}
-  .contact-card .k{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;}
-  .contact-card .v{font-size:0.98rem; color:var(--text);}
+  .contact-card:hover{transform:translateY(-3px); box-shadow:var(--shadow-lg);}
+  .contact-card .k{font-size:0.74rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:8px; font-weight:600;}
+  .contact-card .v{font-size:0.98rem; color:var(--text); font-weight:500;}
 
-  footer{padding:36px 0; text-align:center; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:0.78rem; position:relative; z-index:1;}
+  footer{padding:36px 0; text-align:center; color:var(--muted); font-size:0.82rem; position:relative; z-index:1;}
 
-  @media (max-width:600px){
-    .hero{padding:80px 0 60px;}
-    .schematic{display:none;}
-    nav ul{gap:16px;}
+  @media (max-width:700px){
+    .about-grid{grid-template-columns:1fr;}
+    .mock-cards{grid-template-columns:1fr;}
+    nav ul{display:none;}
   }
 </style>
 </head>
 <body>
-<div class="grid-bg"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
 
 <header>
   <div class="wrap">
     <nav>
-      <div class="logo">PARUL<span>.</span>AGRAWAL</div>
+      <div class="logo">Parul<span>.</span>Agrawal</div>
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -195,43 +208,60 @@
 
 <section class="hero">
   <div class="wrap">
-    <div class="eyebrow">Senior Technical Lead</div>
-    <h1>I architect systems, then I lead the people building them.</h1>
-    <p class="role">15+ years in software engineering, <strong>8+ specializing in React</strong> and full-stack JavaScript/TypeScript. Currently building a customer platform at <strong>Synchrony</strong> — React, Node.js, and Express, end to end.</p>
+    <div class="eyebrow"><span class="dot"></span>Available for Senior Technical Lead roles</div>
+    <h1>I build <span class="hl">interfaces people trust</span> and the systems behind them.</h1>
+    <p class="role">15+ years in software engineering, <strong>8+ specializing in React</strong>, leading full-stack development at <strong>Synchrony</strong> — React, TypeScript, Node.js, and Express.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="mailto:aggarwal.parul5@gmail.com">Get in touch</a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/parul-agrawal-lead/" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a class="btn btn-ghost" href="#experience">View experience</a>
     </div>
 
-    <div class="schematic">
-      <div class="node"><div class="dot"></div><div class="label">FRONTEND</div></div>
-      <div class="connector"></div>
-      <div class="node"><div class="dot"></div><div class="label">API LAYER</div></div>
-      <div class="connector"></div>
-      <div class="node"><div class="dot"></div><div class="label">BACKEND</div></div>
-      <div class="connector"></div>
-      <div class="node"><div class="dot"></div><div class="label">DATA</div></div>
+    <div class="mock">
+      <div class="mock-bar">
+        <span class="mdot r"></span><span class="mdot y"></span><span class="mdot g"></span>
+        <span class="url">app.customer-portal.io/dashboard</span>
+      </div>
+      <div class="mock-body">
+        <div class="mock-row">
+          <div class="mock-input">Search transactions…</div>
+          <div class="mock-btn">+ New</div>
+        </div>
+        <div class="mock-cards">
+          <div class="mock-card"><div class="bar"></div><div class="l1"></div><div class="l2"></div></div>
+          <div class="mock-card"><div class="bar"></div><div class="l1"></div><div class="l2"></div></div>
+          <div class="mock-card"><div class="bar"></div><div class="l1"></div><div class="l2"></div></div>
+        </div>
+        <div class="mock-toggle"><div class="switch"></div> Session auto-refresh enabled</div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="about">
   <div class="wrap">
-    <div class="section-head"><span class="num">// 01</span><h2>About</h2></div>
-    <div class="about">
-      <p>I'm a Senior Technical Lead with 15+ years of experience architecting scalable, high-performance web applications — from secure backend services to responsive, well-tested frontend experiences. My work spans the full stack, but my focus has always been on building systems that stay maintainable as teams and features grow.</p>
-      <p>Currently at Synchrony, I lead development on a customer-facing platform spanning authentication, payments, and account management, built with React, TypeScript, Node.js, and Express. I care about clean architecture: feature-based module structures, typed schemas, and centralized API patterns that let teams ship faster without breaking things.</p>
-      <p>Beyond writing code, I mentor developers, guide architecture decisions across cross-functional teams, and dig into the hard-to-reproduce bugs — especially around session and authentication reliability — that most people would rather avoid.</p>
+    <div class="section-head"><span class="tag">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div class="about">
+        <p>I'm a Senior Technical Lead with 15+ years of experience architecting scalable, high-performance web applications — from secure backend services to responsive, well-tested frontend experiences. My focus has always been on interfaces that feel effortless to use and systems that stay maintainable as teams and features grow.</p>
+        <p>Currently at Synchrony, I lead development on a customer-facing platform spanning authentication, payments, and account management, built with React, TypeScript, Node.js, and Express — with a strong focus on clean architecture: feature-based module structures, typed schemas, and centralized API patterns.</p>
+        <p>Beyond writing code, I mentor developers, guide architecture decisions across cross-functional teams, and dig into the hard-to-reproduce bugs — especially around session and authentication reliability — that most people would rather avoid.</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat"><span class="num">15+</span><span class="lbl">Years in software engineering</span></div>
+        <div class="stat"><span class="num">8+</span><span class="lbl">Years specializing in React</span></div>
+        <div class="stat"><span class="num">~77</span><span class="lbl">Automated test files maintained</span></div>
+        <div class="stat"><span class="num">80%+</span><span class="lbl">Test coverage gate enforced</span></div>
+      </div>
     </div>
   </div>
 </section>
 
 <section id="skills">
   <div class="wrap">
-    <div class="section-head"><span class="num">// 02</span><h2>Skills</h2></div>
+    <div class="section-head"><span class="tag">02</span><h2>Skills</h2></div>
     <div class="skill-groups">
-      <div class="skill-group">
+      <div class="skill-card">
         <h3>Frontend</h3>
         <div class="chips">
           <span class="chip">React.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span>
@@ -239,21 +269,21 @@
           <span class="chip">Zod</span><span class="chip">Angular</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-card">
         <h3>Backend</h3>
         <div class="chips">
           <span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">GraphQL</span>
           <span class="chip">REST APIs</span><span class="chip">SQL</span><span class="chip">MongoDB</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-card">
         <h3>Testing</h3>
         <div class="chips">
           <span class="chip">Vitest</span><span class="chip">Testing Library</span><span class="chip">MSW</span>
           <span class="chip">Jest</span><span class="chip">Cypress</span><span class="chip">Mocha</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-card">
         <h3>Tools &amp; Leadership</h3>
         <div class="chips">
           <span class="chip">Git</span><span class="chip">Jira</span><span class="chip">AWS</span>
@@ -266,7 +296,7 @@
 
 <section id="experience">
   <div class="wrap">
-    <div class="section-head"><span class="num">// 03</span><h2>Experience</h2></div>
+    <div class="section-head"><span class="tag">03</span><h2>Experience</h2></div>
     <div class="timeline">
       <div class="tl-item">
         <div class="when">May 2025 — Present</div>
@@ -302,23 +332,23 @@
 
 <section id="work">
   <div class="wrap">
-    <div class="section-head"><span class="num">// 04</span><h2>Selected Work</h2></div>
+    <div class="section-head"><span class="tag">04</span><h2>Selected Work</h2></div>
     <div class="note"><strong>Note:</strong> most of my production work has been on authentication-gated, proprietary platforms, so I can't share live links or screenshots. The cards below are placeholders — swap in a personal project, an open-source contribution, or a sanitized case study of something you can talk through in an interview.</div>
     <div class="proj-grid">
       <div class="proj-card">
-        <div class="ph-title">Placeholder — Add project</div>
+        <div class="ph-icon">01</div>
         <h3>Project name</h3>
         <p>One or two sentences on the problem it solved and your specific role in building it.</p>
         <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span></div>
       </div>
       <div class="proj-card">
-        <div class="ph-title">Placeholder — Add project</div>
+        <div class="ph-icon">02</div>
         <h3>Project name</h3>
         <p>One or two sentences on the problem it solved and your specific role in building it.</p>
         <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span></div>
       </div>
       <div class="proj-card">
-        <div class="ph-title">Placeholder — Add project</div>
+        <div class="ph-icon">03</div>
         <h3>Project name</h3>
         <p>One or two sentences on the problem it solved and your specific role in building it.</p>
         <div class="tags"><span class="tag">Full-Stack</span></div>
@@ -327,9 +357,9 @@
   </div>
 </section>
 
-<section id="contact" class="contact">
+<section id="contact">
   <div class="wrap">
-    <div class="section-head"><span class="num">// 05</span><h2>Contact</h2></div>
+    <div class="section-head"><span class="tag">05</span><h2>Contact</h2></div>
     <div class="contact-grid">
       <a class="contact-card" href="mailto:aggarwal.parul5@gmail.com">
         <div class="k">Email</div>
