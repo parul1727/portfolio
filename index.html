@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parul Agrawal — Senior Technical Lead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0F1720;
+    --panel:#16212C;
+    --panel-2:#1C2A38;
+    --line:#2A3B4A;
+    --text:#E7ECF1;
+    --muted:#8CA0B3;
+    --accent:#5EEAD4;
+    --accent-dim:#2E5A54;
+    --amber:#F2B84B;
+    --radius:2px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  h1,h2,h3{font-family:'Space Grotesk', sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+
+  /* background schematic grid */
+  .grid-bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(94,234,212,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(94,234,212,0.035) 1px, transparent 1px);
+    background-size:42px 42px;
+    mask-image:radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 80%);
+  }
+
+  header{
+    position:sticky; top:0; z-index:10;
+    backdrop-filter:blur(10px);
+    background:rgba(15,23,32,0.85);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
+  .logo{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.05rem; letter-spacing:0.02em;}
+  .logo span{color:var(--accent);}
+  nav ul{display:flex; gap:28px; list-style:none;}
+  nav ul li a{font-size:0.85rem; color:var(--muted); transition:color .2s;}
+  nav ul li a:hover{color:var(--accent);}
+
+  /* HERO */
+  .hero{
+    position:relative; z-index:1;
+    padding:110px 0 90px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; color:var(--accent);
+    text-transform:uppercase; letter-spacing:0.12em; margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:''; width:24px; height:1px; background:var(--accent);}
+  .hero h1{font-size:clamp(2.2rem, 5vw, 3.4rem); line-height:1.08; max-width:14ch;}
+  .hero .role{
+    margin-top:18px; font-size:1.15rem; color:var(--muted); max-width:52ch;
+  }
+  .hero .role strong{color:var(--text); font-weight:500;}
+  .hero-actions{display:flex; gap:14px; margin-top:36px; flex-wrap:wrap;}
+  .btn{
+    font-family:'JetBrains Mono',monospace; font-size:0.82rem;
+    padding:12px 20px; border-radius:var(--radius);
+    border:1px solid var(--line); transition:all .2s;
+  }
+  .btn-primary{background:var(--accent); color:#0B1319; border-color:var(--accent); font-weight:500;}
+  .btn-primary:hover{background:#7CF0DE;}
+  .btn-ghost{color:var(--text);}
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+
+  /* schematic connector graphic */
+  .schematic{
+    margin-top:64px; display:flex; align-items:center; justify-content:space-between;
+    max-width:640px; position:relative;
+  }
+  .node{
+    display:flex; flex-direction:column; align-items:center; gap:10px; position:relative; z-index:2;
+  }
+  .node .dot{
+    width:14px; height:14px; border-radius:50%; background:var(--panel-2);
+    border:2px solid var(--accent); box-shadow:0 0 0 4px rgba(94,234,212,0.08);
+  }
+  .node .label{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted);}
+  .connector{
+    flex:1; height:1px; background:repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 10px);
+    margin:0 -4px 22px;
+  }
+
+  section{position:relative; z-index:1; padding:80px 0; border-bottom:1px solid var(--line);}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
+  .section-head .num{font-family:'JetBrains Mono',monospace; color:var(--accent); font-size:0.85rem;}
+  .section-head h2{font-size:1.6rem;}
+
+  /* about */
+  .about p{max-width:66ch; color:var(--muted); font-size:1rem;}
+  .about p + p{margin-top:16px;}
+
+  /* skills */
+  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:28px;}
+  .skill-group h3{
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--amber); margin-bottom:14px; font-weight:500;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace; font-size:0.78rem;
+    padding:6px 12px; background:var(--panel); border:1px solid var(--line);
+    border-radius:var(--radius); color:var(--text);
+  }
+
+  /* experience timeline */
+  .timeline{border-left:1px solid var(--line); padding-left:32px; display:flex; flex-direction:column; gap:44px;}
+  .tl-item{position:relative;}
+  .tl-item::before{
+    content:''; position:absolute; left:-37.5px; top:6px;
+    width:9px; height:9px; border-radius:50%; background:var(--ink);
+    border:2px solid var(--accent);
+  }
+  .tl-item .when{font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--muted); margin-bottom:6px;}
+  .tl-item h3{font-size:1.1rem; margin-bottom:4px;}
+  .tl-item .co{color:var(--accent); font-weight:500;}
+  .tl-item ul{margin-top:10px; padding-left:18px; color:var(--muted); font-size:0.94rem;}
+  .tl-item li{margin-bottom:6px;}
+
+  /* projects placeholder */
+  .note{
+    background:var(--panel); border:1px dashed var(--line); border-radius:var(--radius);
+    padding:16px 20px; margin-bottom:28px; color:var(--muted); font-size:0.9rem;
+  }
+  .note strong{color:var(--amber);}
+  .proj-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:20px;}
+  .proj-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; display:flex; flex-direction:column; gap:10px;
+  }
+  .proj-card .ph-title{font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em;}
+  .proj-card h3{font-size:1.05rem; color:var(--text);}
+  .proj-card p{color:var(--muted); font-size:0.9rem;}
+  .proj-card .tags{display:flex; gap:6px; flex-wrap:wrap; margin-top:4px;}
+  .proj-card .tag{font-family:'JetBrains Mono',monospace; font-size:0.68rem; padding:3px 8px; border:1px solid var(--line); border-radius:var(--radius); color:var(--accent);}
+
+  /* contact */
+  .contact{border-bottom:none;}
+  .contact-grid{display:flex; flex-wrap:wrap; gap:16px; margin-top:8px;}
+  .contact-card{
+    flex:1; min-width:200px; background:var(--panel); border:1px solid var(--line);
+    border-radius:var(--radius); padding:20px; transition:border-color .2s;
+  }
+  .contact-card:hover{border-color:var(--accent);}
+  .contact-card .k{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;}
+  .contact-card .v{font-size:0.98rem; color:var(--text);}
+
+  footer{padding:36px 0; text-align:center; color:var(--muted); font-family:'JetBrains Mono',monospace; font-size:0.78rem; position:relative; z-index:1;}
+
+  @media (max-width:600px){
+    .hero{padding:80px 0 60px;}
+    .schematic{display:none;}
+    nav ul{gap:16px;}
+  }
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">PARUL<span>.</span>AGRAWAL</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Senior Technical Lead</div>
+    <h1>I architect systems, then I lead the people building them.</h1>
+    <p class="role">15+ years in software engineering, <strong>8+ specializing in React</strong> and full-stack JavaScript/TypeScript. Currently building a customer platform at <strong>Synchrony</strong> — React, Node.js, and Express, end to end.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:aggarwal.parul5@gmail.com">Get in touch</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/parul-agrawal-lead/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn btn-ghost" href="#experience">View experience</a>
+    </div>
+
+    <div class="schematic">
+      <div class="node"><div class="dot"></div><div class="label">FRONTEND</div></div>
+      <div class="connector"></div>
+      <div class="node"><div class="dot"></div><div class="label">API LAYER</div></div>
+      <div class="connector"></div>
+      <div class="node"><div class="dot"></div><div class="label">BACKEND</div></div>
+      <div class="connector"></div>
+      <div class="node"><div class="dot"></div><div class="label">DATA</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head"><span class="num">// 01</span><h2>About</h2></div>
+    <div class="about">
+      <p>I'm a Senior Technical Lead with 15+ years of experience architecting scalable, high-performance web applications — from secure backend services to responsive, well-tested frontend experiences. My work spans the full stack, but my focus has always been on building systems that stay maintainable as teams and features grow.</p>
+      <p>Currently at Synchrony, I lead development on a customer-facing platform spanning authentication, payments, and account management, built with React, TypeScript, Node.js, and Express. I care about clean architecture: feature-based module structures, typed schemas, and centralized API patterns that let teams ship faster without breaking things.</p>
+      <p>Beyond writing code, I mentor developers, guide architecture decisions across cross-functional teams, and dig into the hard-to-reproduce bugs — especially around session and authentication reliability — that most people would rather avoid.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head"><span class="num">// 02</span><h2>Skills</h2></div>
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>Frontend</h3>
+        <div class="chips">
+          <span class="chip">React.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span>
+          <span class="chip">shadcn UI</span><span class="chip">Zustand</span><span class="chip">React Query</span>
+          <span class="chip">Zod</span><span class="chip">Angular</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Backend</h3>
+        <div class="chips">
+          <span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">GraphQL</span>
+          <span class="chip">REST APIs</span><span class="chip">SQL</span><span class="chip">MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Testing</h3>
+        <div class="chips">
+          <span class="chip">Vitest</span><span class="chip">Testing Library</span><span class="chip">MSW</span>
+          <span class="chip">Jest</span><span class="chip">Cypress</span><span class="chip">Mocha</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Tools &amp; Leadership</h3>
+        <div class="chips">
+          <span class="chip">Git</span><span class="chip">Jira</span><span class="chip">AWS</span>
+          <span class="chip">Architecture Design</span><span class="chip">Mentoring</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="num">// 03</span><h2>Experience</h2></div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="when">May 2025 — Present</div>
+        <h3><span class="co">Synchrony</span> · Senior Technical Lead</h3>
+        <ul>
+          <li>Provide technical leadership for cross-functional teams, guiding architecture decisions and mentoring developers.</li>
+          <li>Build and ship a production customer portal using React, TypeScript, and Zustand, covering authentication, payments, account management, and transaction history.</li>
+          <li>Architect scalable backend services with Node.js, Express, and TypeScript, standardizing REST API integration through a feature-based module structure.</li>
+          <li>Diagnose and resolve authentication and session defects, tracing JWT refresh and CSRF flows end-to-end.</li>
+          <li>Maintain ~77 automated test files with 80%+ coverage gates using Vitest and Jest.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="when">Jan 2020 — May 2025</div>
+        <h3><span class="co">Honeywell</span> · Senior Frontend Developer (Contract)</h3>
+        <ul>
+          <li>Provided technical leadership, mentoring offshore/onshore teams and enforcing best practices.</li>
+          <li>Led design and development of complex UIs using React.js, with server-side logic and GraphQL APIs in Node.js.</li>
+          <li>Owned end-to-end development, ensuring full-stack integration, with E2E testing in Cypress.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="when">Jun 2018 — Jan 2020</div>
+        <h3><span class="co">Casting Workbook</span> · Senior Frontend Developer</h3>
+        <ul>
+          <li>Developed complex, responsive UIs using React.js and led the migration of legacy Angular.js projects to modern React.js.</li>
+          <li>Facilitated cross-team communication and conducted in-depth code reviews.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head"><span class="num">// 04</span><h2>Selected Work</h2></div>
+    <div class="note"><strong>Note:</strong> most of my production work has been on authentication-gated, proprietary platforms, so I can't share live links or screenshots. The cards below are placeholders — swap in a personal project, an open-source contribution, or a sanitized case study of something you can talk through in an interview.</div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="ph-title">Placeholder — Add project</div>
+        <h3>Project name</h3>
+        <p>One or two sentences on the problem it solved and your specific role in building it.</p>
+        <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="ph-title">Placeholder — Add project</div>
+        <h3>Project name</h3>
+        <p>One or two sentences on the problem it solved and your specific role in building it.</p>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">Express</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="ph-title">Placeholder — Add project</div>
+        <h3>Project name</h3>
+        <p>One or two sentences on the problem it solved and your specific role in building it.</p>
+        <div class="tags"><span class="tag">Full-Stack</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="section-head"><span class="num">// 05</span><h2>Contact</h2></div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:aggarwal.parul5@gmail.com">
+        <div class="k">Email</div>
+        <div class="v">aggarwal.parul5@gmail.com</div>
+      </a>
+      <a class="contact-card" href="tel:7788785419">
+        <div class="k">Phone</div>
+        <div class="v">778-878-5419</div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/parul-agrawal-lead/" target="_blank" rel="noopener">
+        <div class="k">LinkedIn</div>
+        <div class="v">/in/parul-agrawal-lead</div>
+      </a>
+      <div class="contact-card">
+        <div class="k">Location</div>
+        <div class="v">Spring Lake, MI, US</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">Built by Parul Agrawal — updated 2026</footer>
+
+</body>
+</html>
